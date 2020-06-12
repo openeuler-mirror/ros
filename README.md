@@ -26,6 +26,13 @@ It provides ROS source for openEuler
 3.  提交代码
 4.  新建 Pull Request
 
+#### 已完成移植package
+
+- https://gitee.com/src-openeuler/catkin
+- https://gitee.com/src-openeuler/class_loader
+- https://gitee.com/src-openeuler/cmake_modules
+- https://gitee.com/src-openeuler/cpp_common
+- https://gitee.com/src-openeuler/gencpp
 
 #### 码云特技
 
