@@ -13,7 +13,9 @@ openEuler ROS SIG成立于2020年6月，致力于在openEuler系统上提供对R
 使用测试文档可参考[使用文档](/user_doc)
 
 - [openEuler22.03安装测试ROS2 Humble](/user_doc/openEuler22.03安装测试ROS2-Humble.md)
-- TODO
+- [openEuler-24.03-Arm 安装测试 ROS2 Humble](/user_doc/ROS-humble-oerv24.03-arm/README.md)
+- [openEuler-24.03-x86 安装测试 ROS2 Humble](/user_doc/ROS-humble-oerv24.03-x86/README.md)
+- [openEuler-24.03 RISCV Lpi4a 安装测试 ROS2 Humble](/user_doc/ROS-humble-oerv24.03-lpi4a/README.md)
 
 ## 参与贡献
 
