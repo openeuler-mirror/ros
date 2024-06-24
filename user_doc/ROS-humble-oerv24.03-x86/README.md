@@ -126,6 +126,28 @@ source /opt/ros/humble/setup.sh
 # sudo reboot
 ```
 
+## 安装UKUI桌面
+
+安装字体
+
+```
+sudo dnf -y groupinstall fonts 
+```
+
+安装UKUI
+
+```
+sudo dnf -y install ukui
+```
+
+设置图形启动
+
+```
+sudo systemctl set-default graphical.target
+```
+
+重启电脑
+
 ## 测试用例列表及测试结果
 
 测试用例列表如下
@@ -414,5 +436,10 @@ ros2 bag info 工具
 
 测试通过
 
+在XFCE桌面下
+
 ![Screenshot_2023-11-24_03-20-56](./img/36.png)
 
+在UKUI桌面下
+
+![Screenshot_2023-11-24_03-20-56](./img/37.png)

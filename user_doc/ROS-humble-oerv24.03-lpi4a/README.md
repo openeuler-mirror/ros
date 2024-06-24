@@ -102,6 +102,7 @@ source /opt/ros/humble/setup.sh
 | --------------------------- | ---- |
 | 测试 turtlesim功能          | 失败 |
 | 使用HDMI开机                | 失败 |
+| 安装XFCE并启动              | 失败 |
 | 测试ros2 pkg create         | 成功 |
 | 测试ros2 pkg executables    | 成功 |
 | 测试ros2 pkg list           | 成功 |
@@ -136,6 +137,65 @@ source /opt/ros/humble/setup.sh
 | 测试 turtlesim功能 | 失败 |
 
 结论：当前由于oERV 24.03的原因无法登录桌面，因此turtlesim相关的功能均无法使用。
+
+## 安装XFCE
+
+安装字库
+
+```
+# sudo dnf install dejavu-fonts liberation-fonts gnu-*-fonts google-*-fonts
+```
+
+安装Xorg
+
+```
+# sudo dnf install xorg-*
+```
+
+安装XFCE及组件
+
+```
+# sudo dnf install xfwm4 xfdesktop xfce4-* xfce4-*-plugin network-manager-applet *fonts
+```
+
+安装登录管理器
+
+```
+# sudo dnf install lightdm lightdm-gtk
+```
+
+设置默认桌面为XFCE 通过root权限用户设置
+
+```
+# echo 'user-session=xfce' >> /etc/lightdm/lightdm.conf.d/60-lightdm-gtk-greeter.conf
+```
+
+使用登录管理器登录XFCE
+
+```
+# sudo systemctl start lightdm
+```
+
+登录管理器启动后，在右上角左侧选择"xfce-session" 输入用户名、密码登录
+
+此时无法打开管理器
+
+设置开机自启动图形界面
+
+```
+# sudo systemctl enable lightdm
+# sudo systemctl set-default graphical.target
+```
+
+重启验证
+
+```
+# sudo reboot
+```
+
+经检验，在ssh开启-X情况下仍无图像输出
+
+![36](./img/36.png)
 
 ## 测试 ros 基础工具相关功能
 
