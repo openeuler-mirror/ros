@@ -25,7 +25,7 @@ openEuler ROS SIG成立于2020年6月，致力于在openEuler系统上提供对R
 
 ROS SIG 相关文档可参考[项目文档](/document)
 
-- 贡献项目文档和使用文档：TODO
+- 贡献项目文档和使用文档：[become_contributor](/user_doc/become_contributor/become_contributor.md)
 
 - 解决已有功能包Bug：TODO
 - 贡献新的功能包：TODO
