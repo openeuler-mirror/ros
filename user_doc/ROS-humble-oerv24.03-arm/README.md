@@ -1,4 +1,16 @@
 ## 虚拟机安装
+参考链接: [CSDN](https://blog.csdn.net/baidu_25117757/article/details/128302530)
+
+### 软件下载
+#### 安装QEMU
+[https://qemu.weilnetz.de/w64/](https://qemu.weilnetz.de/w64/)
+#### 下载QEMU UEFI固件
+[https://releases.linaro.org/components/kernel/uefi-linaro/latest/release/qemu64/QEMU_EFI.fd](https://releases.linaro.org/components/kernel/uefi-linaro/latest/release/qemu64/QEMU_EFI.fd)
+#### 下载镜像文件
+[https://www.openeuler.org/zh/download/](https://www.openeuler.org/zh/download/)
+#### 安装tap-windows
+[https://build.openvpn.net/downloads/releases/tap-windows-9.24.7-I601-Win10.exe](https://build.openvpn.net/downloads/releases/tap-windows-9.24.7-I601-Win10.exe)
+
 ### 设置img
 ```
 qemu-img create -f qcow2 openEuler-24.03-LTS-SP3-aarch64.img 50G
@@ -6,12 +18,28 @@ qemu-img create -f qcow2 openEuler-24.03-LTS-SP3-aarch64.img 50G
 
 ### 安装虚拟机
 ```
-qemu-system-aarch64 -m 30000 -cpu cortex-a72 -smp 8,cores=2,threads=2,sockets=2 -M virt -bios D:\Programs\Qemu\QEMU_EFI.fd -net nic -net tap,ifname=tap1212 -device nec-usb-xhci -device usb-kbd -device usb-mouse -device VGA -drive if=none,file=D:\VirtuakMachine\openEuler-24.03-LTS-aarch64-dvd.iso,id=cdrom,media=cdrom -device virtio-scsi-device -device scsi-cd,drive=cdrom -drive if=none,file=D:\VirtuakMachine\qemu\openEuler-24.03-LTS-SP3-aarch64.img,id=hd0 -device virtio-blk-device,drive=hd0
+qemu-system-aarch64 -m 16000 -cpu cortex-a72 -smp 8,cores=2,threads=2,sockets=2 -M virt -bios D:\Programs\Qemu\QEMU_EFI.fd -net nic -net tap,ifname=tap1212 -device nec-usb-xhci -device usb-kbd -device usb-mouse -device VGA -drive if=none,file=D:\VirtuakMachine\openEuler-24.03-LTS-aarch64-dvd.iso,id=cdrom,media=cdrom -device virtio-scsi-device -device scsi-cd,drive=cdrom -drive if=none,file=D:\VirtuakMachine\qemu\openEuler-24.03-LTS-SP3-aarch64.img,id=hd0 -device virtio-blk-device,drive=hd0
 ```
+其中有部分需要修改
+根据安装路径，**修改UEFI固件地址，修改网卡名，修改img路径，修改iso路径**
+
+>qemu-system-aarch64 -m 16000 -cpu cortex-a72 -smp 8,cores=2,threads=2,sockets=2 -M virt -bios 
+**D:\Programs\Qemu\QEMU_EFI.fd** -net nic -net tap,**ifname=tap1212** -device nec-usb-xhci -device usb-kbd 
+-device usb-mouse -device VGA -drive if=none,**file=D:\VirtuakMachine\openEuler-24.03-LTS-aarch64-dvd.iso**,
+id=cdrom,media=cdrom -device virtio-scsi-device -device scsi-cd,drive=cdrom -drive if=none,
+>**file=D:\VirtuakMachine\qemu\openEuler-24.03-LTS-SP3-aarch64.img**,id=hd0 -device virtio-blk-device,drive=hd0
+
 ### 启动虚拟机
+修改成和上面一致的路径，注意两段指令并不相同，想启动时使用安装命令会导致重新安装
 ```
-qemu-system-aarch64 -m 16000 -cpu cortex-a72 -smp 8,cores=2,threads=2,sockets=2 -M virt -bios D:\Programs\Qemu\QEMU_EFI.fd -net nic -net tap,ifname=tap1212 -device nec-usb-hci -device usb-kbd -device usb-mouse -device VGA -drive if=none,file=D:\VirtuakMachine\qemu\openEuler-24.03-LTS-SP3-aarch64.img,id=hd0 -device virtio-blk-device,drive=hd0
+qemu-system-aarch64 -m 16000 -cpu cortex-a72 -smp 8,cores=2,threads=2,sockets=2 -M virt -bios D:\Programs\Qemu\QEMU_EFI.fd -net nic -net tap,ifname=tap1212 -device nec-usb-xhci -device usb-kbd -device usb-mouse -device VGA -drive if=none,file=D:\VirtuakMachine\qemu\openEuler-24.03-LTS-SP3-aarch64.img,id=hd0 -device virtio-blk-device,drive=hd0
 ```
+>qemu-system-aarch64 -m 16000 -cpu cortex-a72 -smp 8,cores=2,threads=2,sockets=2 -M virt -bios 
+**D:\Programs\Qemu\QEMU_EFI.fd** -net nic -net tap,**ifname=tap1212** -device nec-usb-xhci -device usb-kbd 
+-device usb-mouse -device VGA -drive if=none,**file=D:\VirtuakMachine\qemu\openEuler-24.03-LTS-SP3-aarch64.img**,
+>id=hd0 -device virtio-blk-device,drive=hd0
+
+
 ## 虚拟机配置
 
 安装dde桌面
