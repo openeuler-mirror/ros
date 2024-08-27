@@ -8,7 +8,13 @@ openEuler ROS SIG成立于2020年6月，致力于在openEuler系统上提供对R
 
 ## 使用与开发文档
 
-文档源文件存储在docs/source目录下：
+openEuler在线文档[openEuler ROS 使用与开发手册](https://openeuler-ros-docs.readthedocs.io/en/latest/)：https://openeuler-ros-docs.readthedocs.io/en/latest/
+
+在线文档包含了openEuler ROS的安装、使用、基础开发教程、专题教程以及如何参与sig组做贡献等内容。
+
+文档源文件存储在docs/source目录下。
+
+
 
 ## 已完成移植的功能包列表
 
