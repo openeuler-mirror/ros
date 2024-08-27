@@ -1,0 +1,2 @@
+# 建图与导航教程指导
+本章节是openEuler ROS常用建图导航功能的使用手册和开发教程，涵盖stage-ros 2D仿真软件、gmapping建图定位、cartographer建图定位以及navigation导航等主要内容
