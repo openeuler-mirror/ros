@@ -31,9 +31,10 @@
 
 参考文章：
 
-https://docs.openeuler.org/en/docs/24.03_LTS/docs/Installation/RISC-V-QEMU.html
+[https://docs.openeuler.org/en/docs/24.03_LTS/docs/Installation/RISC-V-QEMU.html](https://docs.openeuler.org/en/docs/24.03_LTS/docs/Installation/RISC-V-QEMU.html
+)
 
-https://www.openeuler.org/en/blog/phoebe/2023-09-26-Run-openEuler-RISC-V-On-Qemu.html
+[https://www.openeuler.org/en/blog/phoebe/2023-09-26-Run-openEuler-RISC-V-On-Qemu.html](https://www.openeuler.org/en/blog/phoebe/2023-09-26-Run-openEuler-RISC-V-On-Qemu.html)
 
 由于发行版软件仓库里的qemu版本比较老(6.1)，所以需要自行编译安装新版本的qemu，运行24.03的openEuler for RISC-V要求qemu版本大于8.1，我们就安装 8.x 最新的 8.2.6 版。
 
