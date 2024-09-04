@@ -29,7 +29,7 @@ git config --global user.email 'youruseremail'
 
 CLA（Contributor License Agreement, 社区贡献者许可协议）。
 参考文章：[https://zhuanlan.zhihu.com/p/68251730?from_voters_page=true](https://gitee.com/link?target=https%3A%2F%2Fzhuanlan.zhihu.com%2Fp%2F68251730%3Ffrom_voters_page%3Dtrue)
-CLA是开源社区为了避免法律纠纷而要开源求贡献者签署的一个协议。
+CLA是开源社区为了避免法律纠纷而要求贡献者签署的一个协议。
 对 openeuler 开源社区的仓库提请合并代码（Pull Request），就会检验该代码的提交者(committer)邮箱是否签署CLA， 未签署CLA的代码不予合并。建议在提交PR之前，就完成CLA的签署。
 需要注意区分企业还是个人，企业签署CLA可以参考[企业签署 CLA ，正式加入 openEuler 社区的流程](https://www.openeuler.org/zh/blog/2022-11-25-cla/CLA%E7%AD%BE%E7%BD%B2%E6%B5%81%E7%A8%8B.html)
 
