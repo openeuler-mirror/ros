@@ -1,8 +1,8 @@
+# openEuler21.03 ROS1 OBS打包指南
+
  关于obs上如何构建工程,并且生成rpm包,可以参考视频:已经很详细了:
 
 [[玩转openEuler系列直播4\] openEuler构建之OBS使用指导](https://www.bilibili.com/video/BV1YK411H7E2?from=search&seid=18120875301555648408)
-
-
 
 ## 1.下载相关rpm包
 
@@ -22,7 +22,7 @@ rpm -ivh catkin-0.7.26-1.oe1.aarch64.rpm
 
 安装之后,会在/opt/ros/melodic/devel/bin
 
-![img](../pics/ros-install-4.png)![点击并拖拽以移动](data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==)
+![img](pics/ros-install-4.png)![点击并拖拽以移动](data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==)
 
 验证功能:
 
@@ -34,17 +34,17 @@ cd ..
 catkin_make
 ```
 
-![img](../pics/ros-install-6.png)![点击并拖拽以移动](data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==)
+![img](pics/ros-install-6.png)
 
 可以正常编译通过,证明catkin_make功能正常,恭喜解锁catkin新技能
 
 \-----------------------------------------------------------------------------------------------------------------------------------------------------
 
-##  遇到的问题：
+## 遇到的问题：
 
 ### 问题1：出现如下报错
 
-![img](../pics/ros-install-7.png)![点击并拖拽以移动](data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==)
+![img](pics/ros-install-7.png)
 
 可能的原因有两个：原因1：是因为CMAKE_PREFIX_PATH=的路径不对，需要export CMAKE_PREFIX_PATH=xxx放入你可执行程序的目录，例如CMAKE_PREFIX_PATH=/home/davidhan/catkin_ws3/install_isolated
 

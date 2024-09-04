@@ -1,8 +1,10 @@
-**前言**：做这件事的初衷是为了有一天能够在openeuler上通过yum install ros-xxx来安装ros，想想都觉得很炫酷。
+# openEuler21.03 ROS2 OBS打包指南
+
+**前言**：做这件事的初衷是为了有一天能够在openEuler上通过yum install ros-xxx来安装ros，想想都觉得很炫酷。
 
  **step0: 环境准备**
 
-**系统环境** OpenEuler21.03 
+**系统环境** openEuler21.03 
 
 **ROS2的版本** ros2-foxy
 
@@ -374,7 +376,7 @@ colcon build --merge-install 可以达到 catkin_make_isolated --install 一样�
 
 相关去osb编译的博客参考
 
-[openeuler 下载已经打包好的rpm包,并验证功能_DavidHan008-CSDN博客](https://blog.csdn.net/David_Han008/article/details/107591536)
+[openEuler 下载已经打包好的rpm包,并验证功能_DavidHan008-CSDN博客](https://blog.csdn.net/David_Han008/article/details/107591536)
 
 obs的官网
 

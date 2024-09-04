@@ -1,5 +1,6 @@
+# openEuler20.09以及21.03的安装测试
 
-## 步骤1: 下载openeuler20.09镜像
+## 步骤1: 下载openEuler20.09镜像
 
 下载链接:https://repo.openeuler.org/openEuler-20.09/ISO/
 
@@ -7,7 +8,7 @@
 
 参考链接: [openEuler](https://openeuler.org/zh/docs/20.09/docs/Installation/installation.html)
 
-![img](../pics/ros-install-1.png)![点击并拖拽以移动](data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==)
+![img](pics/ros-install-1.png)![点击并拖拽以移动](data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==)
 
 
 
@@ -17,19 +18,19 @@
 
 #### 问题1: 出现需要设置基础软件仓库时出错
 
-![img0](../pics/ros-install-0.png)
+![img0](pics/ros-install-0.png)
 
 解决办法,在安装源那边设置源的链接为: https://repo.openeuler.org/openEuler-20.09/OS/x86_64/ 或者https://repo.openeuler.org/openEuler-20.09/OS/aarch64/ 需结合安装的到底是基于x86还是aarch64来定
 
 #### 问题2: 安装时出现以下错误,xxx安装终止
 
-![img2](../pics/ros-install-2.jpg)
+![img2](pics/ros-install-2.jpg)
 
 
 
 这个问题主要是网络环境不好,无法完整下载下来对应的rpm包,插上网线就好了.
 
-安装系统方面参考博客:[OpenEuler简介与安装_淼叔的博客-CSDN博客_openeuler](https://blog.csdn.net/liumiaocn/article/details/110255783)
+安装系统方面参考博客:[openEuler简介与安装_淼叔的博客-CSDN博客_openeuler](https://blog.csdn.net/liumiaocn/article/details/110255783)
 
 ## 步骤3: 安装UKUI界面
 
@@ -49,7 +50,7 @@ systemctl set-default graphical.target  # 将默认模式修改为图形界面�
 systemctl set-default multi-user.target # 将默认模式修改为命令行模式
 ```
 
-![img](../pics/ros-install-3.jpg)![点击并拖拽以移动](data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==)
+![img](pics/ros-install-3.jpg)
 
 参考链接:
 
@@ -61,7 +62,7 @@ systemctl set-default multi-user.target # 将默认模式修改为命令行模�
 
 更新日期：2021年8月16日
 
-##  步骤1: 下载openeuler21.03镜像
+## 步骤1: 下载openEuler21.03镜像
 
 下载链接:[https://repo.openeuler.org/openEuler-21.03/ISO/](https://repo.openeuler.org/openEuler-20.09/ISO/)
 
