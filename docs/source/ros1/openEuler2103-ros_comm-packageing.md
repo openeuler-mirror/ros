@@ -1,5 +1,6 @@
+# openEuler21.03上ros-common打包编译
 
-### 1.在树莓派上安装openeuler:
+### 1.在树莓派上安装openEuler:
 
 跟随这罗老师的tutorial配置好ros安装所需要的一些环境,
 
@@ -45,7 +46,7 @@ pip install empy
 
 构建源码打包的工程
 
-![img](../pics/ros-install-5.png)![点击并拖拽以移动](data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==)
+![img](pics/ros-install-5.png)![点击并拖拽以移动](data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==)
 
 soueces里面存放的是tar.gz结尾的压缩包,例如catkin-0.7.26.tar.gz
 
