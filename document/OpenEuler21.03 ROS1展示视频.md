@@ -1,6 +1,6 @@
 | 编号 | 名称                                               | 提交链接                                    |
 | ---- | -------------------------------------------------- | ------------------------------------------- |
-| 1    | openeuler上运行cartrographer                       | https://www.bilibili.com/video/BV1Rf4y1B73u |
+| 1    | openeuler上运行cartographer                       | https://www.bilibili.com/video/BV1Rf4y1B73u |
 | 2    | openeuler上运行gmapping                            | https://www.bilibili.com/video/BV1ZZ4y157uN |
 | 3    | openeuler上运行rostopic demo                       | https://www.bilibili.com/video/BV1QK4y1f7Lw |
 | 4    | OpenEuler上利用stage_ros模拟器运行move_base        | https://www.bilibili.com/video/BV1Dh41117B6 |
