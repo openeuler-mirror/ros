@@ -59,7 +59,7 @@ gpgcheck=0
 EOF'
 ```
 
-修改修改 /etc/yum.repos.d/openEuler.repo 中的以下部分
+修改 /etc/yum.repos.d/openEuler.repo 中的以下部分
 
 ```
 [EPOL]
