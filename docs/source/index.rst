@@ -50,6 +50,8 @@ openEuler ROS sig成立于2020年6月，主要目标是将ROS1/ROS2移植到open
    
    other-tutorials/qt-ros-dev.md
    other-tutorials/webots.md
+   other-tutorials/usb-cam.md
+   other-tutorials/usb-cam-build.md
    
 .. toctree::
    :maxdepth: 1
