@@ -30,7 +30,7 @@ git config --global user.email 'youruseremail'
 CLA（Contributor License Agreement, 社区贡献者许可协议）。
 参考文章：[https://zhuanlan.zhihu.com/p/68251730?from_voters_page=true](https://gitee.com/link?target=https%3A%2F%2Fzhuanlan.zhihu.com%2Fp%2F68251730%3Ffrom_voters_page%3Dtrue)
 CLA是开源社区为了避免法律纠纷而要求贡献者签署的一个协议。
-对 openeuler 开源社区的仓库提请合并代码（Pull Request），就会检验该代码的提交者(committer)邮箱是否签署CLA， 未签署CLA的代码不予合并。建议在提交PR之前，就完成CLA的签署。
+对 openeuler 开源社区的仓库提交合并代码（Pull Request），就会检验该代码的提交者(committer)邮箱是否签署CLA， 未签署CLA的代码不予合并。建议在提交PR之前，就完成CLA的签署。
 需要注意区分企业还是个人，企业签署CLA可以参考[企业签署 CLA ，正式加入 openEuler 社区的流程](https://www.openeuler.org/zh/blog/2022-11-25-cla/CLA%E7%AD%BE%E7%BD%B2%E6%B5%81%E7%A8%8B.html)
 
 #### 1. 选择个人开发者
@@ -48,6 +48,6 @@ CLA是开源社区为了避免法律纠纷而要求贡献者签署的一个协�
 点击Sign稍等片刻签署成功
 - 首次提交PR（pull request）时，按照机器人提示在评论区回复`/check-cla`检查 [参考链接](https://gitee.com/openeuler/RISC-V/pulls/39)
 - Gitee设置有“提交邮箱”这个东西，如果和cla里的邮箱不一致就会不通过
-按照以上过程执行，/check-cla 还是不通过的，请在以[issue](https://gitee.com/openeuler/RISC-V/issues) 方式反馈问题，会有有协助处理。 （或者[openEuler RISC-V SIG 公开交流群]中加速沟通快速解决）
+按照以上过程执行，/check-cla 还是不通过的，请在以[issue](https://gitee.com/openeuler/RISC-V/issues) 方式反馈问题，会有人协助处理。 （或者[openEuler RISC-V SIG 公开交流群]中加速沟通快速解决）
 
 ![img_4.png](image/img_4.png)
