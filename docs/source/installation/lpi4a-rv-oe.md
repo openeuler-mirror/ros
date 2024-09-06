@@ -100,7 +100,7 @@ source /opt/ros/humble/setup.sh
 
 | 测试用例名                  | 状态 |
 | --------------------------- | ---- |
-| 测试 turtlesim功能          | 失败 |
+| 测试 turtlesim功能          | 成功 |
 | 使用HDMI开机                | 失败 |
 | 安装XFCE并启动              | 失败 |
 | 测试ros2 pkg create         | 成功 |
@@ -133,10 +133,10 @@ source /opt/ros/humble/setup.sh
 
 | 测试用例名         | 状态 |
 | ------------------ | ---- |
-| 进入桌面           | 失败 |
-| 测试 turtlesim功能 | 失败 |
+| 使用HDMI开机        | 失败 |
+| 安装XFCE并启动      | 失败 |
 
-结论：当前由于oERV 24.03的原因无法登录桌面，因此turtlesim相关的功能均无法使用。
+结论：由于oERV 24.03主线用的是 6.6 内核，[暂时没有HDMI驱动](https://github.com/revyos/revyos/issues/74)，因此需要使用ssh进行远程连接
 
 ## 安装XFCE
 
@@ -442,7 +442,24 @@ ros2 bag info 工具
 
 分别在两个终端执行 `ros2 run turtlesim turtlesim_node` 和 `ros2 run turtlesim turtle_teleop_key` 
 
-在执行第一个命令时出错，XCB 平台插件缺少一些依赖,目前暂不支持在lpi4a上进行该测试
+在执行第一个命令时出错，由于oERV 24.03主线用的是 6.6 内核，[暂时没有HDMI驱动](https://github.com/revyos/revyos/issues/74)，需要使用 `ssh -X` forward X11 功能在本地电脑上显示
 
 ![Screenshot_2023-11-24_03-20-56](image/rv-img/35.png)
 
+首先修改 `Licheepi 4A` 上的 `/etc/ssh/sshd_config` 文件，修改`X11Forwarding`项为`yes`，然后重启`sshd`服务
+
+```bash
+sudo systemctl restart sshd
+```
+
+就可以在你的电脑上使用下面的命令通过`x11forward`启动`Licheepi 4A`上的小海龟界面了，同理，其他需要显示界面的程序都可以这样显示
+
+在其他有 X11 client 环境的系统下执行，比如Ubuntu或者openEuler桌面版
+
+```bash
+ssh -X openeuler@192.168.xx.xx "ros2 run turtlesim turtlesim_node"
+``` 
+
+![alt text](image/run-turtle-on-th1520.png)
+
+小海龟能正常移动，测试通过
