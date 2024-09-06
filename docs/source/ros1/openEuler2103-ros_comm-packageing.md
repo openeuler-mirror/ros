@@ -2,13 +2,13 @@
 
 ### 1.在树莓派上安装openEuler:
 
-跟随这罗老师的tutorial配置好ros安装所需要的一些环境,
+跟随着罗老师的tutorial配置好ros安装所需要的一些环境,
 
 参考链接:https://gitee.com/yunxiangluo/ros_openeuler?_from=gitee_search
 
-这篇博客目的是在openeuler源码编译ros-comm,然后在将rpm包进行打包,并且验证打包可执行程序
+这篇博客目的是在openeuler源码编译ros-comm,然后再将rpm包进行打包,并且验证打包好的可执行程序，
 
-因此着重记录一下跟罗老师tutorial当中需要注意或者说不同的地方
+因此着重记录一下跟罗老师tutorial当中需要注意或者说不同的地方。
 
 ### 2.下载ros-common源码
 
@@ -48,7 +48,7 @@ pip install empy
 
 ![img](pics/ros-install-5.png)![点击并拖拽以移动](data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==)
 
-soueces里面存放的是tar.gz结尾的压缩包,例如catkin-0.7.26.tar.gz
+sources里面存放的是tar.gz结尾的压缩包,例如catkin-0.7.26.tar.gz
 
 将文件夹进行压缩的命令:
 
