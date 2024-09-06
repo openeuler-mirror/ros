@@ -12,7 +12,7 @@ usb_cam 源码编译 参考 openEuler24 [编译usb_cam源码](https://openeuler-
 
 ![1725005058555](image/usb-cam/1725005058555.png)
 
-如果 dnf searcb opencv 显示没有可安装的包，请配置dnf源 ，
+如果 dnf search opencv 显示没有可安装的包，请配置dnf源 ，
 
 使用 `pluma /etc/yum.repos.d/openEuler.repo `  打开dnf源，可参考，如下配置文件
 W
