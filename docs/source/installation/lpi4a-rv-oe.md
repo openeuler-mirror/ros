@@ -452,7 +452,7 @@ ros2 bag info 工具
 sudo systemctl restart sshd
 ```
 
-就可以在你的电脑上使用下面的命令通过`x11forward`启动`Licheepi 4A`上的小海龟界面了，同理，其他需要显示界面的程序都可以这样显示
+就可以在你的电脑上使用下面的命令通过`ssh -X`启动`Licheepi 4A`上的小海龟界面了，同理，其他需要显示界面的程序都可以这样显示
 
 在其他有 X11 client 环境的系统下执行，比如Ubuntu或者openEuler桌面版
 
