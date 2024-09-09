@@ -8,14 +8,14 @@ usb_cam 源码编译 参考 openEuler24 [编译usb_cam源码](https://openeuler-
 
 ### 2、OpenCV库安装
 
-使用` dnf install` 命令安装ros对应的版本的opencv，这里用的是ros-humble，全部装上
+使用`dnf install` 命令安装ros对应的版本的opencv，这里用的是ros-humble，全部装上
 
 ![1725005058555](image/usb-cam/1725005058555.png)
 
 如果 dnf search opencv 显示没有可安装的包，请配置dnf源 ，
 
-使用 `pluma /etc/yum.repos.d/openEuler.repo `  打开dnf源，可参考，如下配置文件
-W
+使用 `pluma /etc/yum.repos.d/openEuler.repo` 打开dnf源，可参考，如下配置文件
+
 ```
 #generic-repos is licensed under the Mulan PSL v2.
 #You can use this software according to the terms and conditions of the Mulan PSL v2.
@@ -97,9 +97,9 @@ gpgkey=http://repo.openeuler.org/openEuler-24.03-LTS/source/RPM-GPG-KEY-openEule
 
 ![1724992764409](image/usb-cam/1724992764409.png)
 
-完整代码在我的github仓库下 成果02，[https://github.com/jojoandgyc/PLCTandJiaChen](https://)
+完整代码在我的github仓库下 成果02，[https://github.com/jojoandgyc/PLCTandJiaChen](https://github.com/jojoandgyc/PLCTandJiaChen)
 
-![1725003129856](image/usb-cam/1725003129856.png)]
+![1725003129856](image/usb-cam/1725003129856.png)
 
 题目如上，需求分析如下，分三个节点实现：
 
@@ -113,7 +113,7 @@ gpgkey=http://repo.openeuler.org/openEuler-24.03-LTS/source/RPM-GPG-KEY-openEule
 
 通过，opencv节点改成灰度图，不然感觉openCV节点没啥用，继续传给三号节点显示。
 
-```
+```cpp
 #include <rclcpp/rclcpp.hpp>
 #include <sensor_msgs/msg/image.hpp>
 #include <cv_bridge/cv_bridge.h>
@@ -196,7 +196,7 @@ int main(int argc, char **argv)
 
 注意这边代码，直接使用openCV的图像类，直接show，显示图像
 
-```#include
+```cpp
 #include <sensor_msgs/msg/image.hpp>
 #include <cv_bridge/cv_bridge.h>
 #include <opencv2/opencv.hpp>

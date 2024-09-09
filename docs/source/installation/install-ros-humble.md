@@ -89,10 +89,10 @@ source /opt/ros/humble/setup.bash
 或者输入以下命令将上述语句写入~/.bashrc文件
 
 ```
-echo " source /opt/ros/humble/setup.bash" >> ~/.bashrc 
+echo "source /opt/ros/humble/setup.bash" >> ~/.bashrc
 ```
 
-随后输入`source  ~/.bashrc`来激活ROS环境变量的设置
+随后输入`source ~/.bashrc`来激活ROS环境变量的设置
 
 ## 测试小乌龟
 
