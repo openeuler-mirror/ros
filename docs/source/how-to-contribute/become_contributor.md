@@ -39,12 +39,12 @@ CLA是开源社区为了避免法律纠纷而要求贡献者签署的一个协�
 注意区分企业以及个人
 ![img_2.png](image/img_2.png)
 
-### 2. 填写信息
+#### 2. 填写信息
 注册的时候要注意：
 - gitee注册邮箱、CLA签署建议使邮箱一致
 ![img_3.png](image/img_3.png)
 
-### 3. 签署成功
+#### 3. 签署成功
 点击Sign稍等片刻签署成功
 - 首次提交PR（pull request）时，按照机器人提示在评论区回复`/check-cla`检查 [参考链接](https://gitee.com/openeuler/RISC-V/pulls/39)
 - Gitee设置有“提交邮箱”这个东西，如果和cla里的邮箱不一致就会不通过
