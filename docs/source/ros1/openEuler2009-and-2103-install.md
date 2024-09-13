@@ -70,6 +70,6 @@ systemctl set-default multi-user.target # 将默认模式修改为命令行模�
 
 #### 问题1: 出现需要设置基础软件仓库时出错
 
-解决办法,需要先吧repo的选项改成https://,然后接着输入为: [repo.openeuler.org/openEuler-21.03/OS/x86_64/](https://repo.openeuler.org/openEuler-20.09/OS/x86_64/) 或者[repo.openeuler.org/openEuler-21.03/OS/aarch64/](https://repo.openeuler.org/openEuler-20.09/OS/aarch64/) 需结合安装的到底是基于x86还是aarch64来定
+解决办法,需要先把repo的选项改成https://,然后接着输入为: [repo.openeuler.org/openEuler-21.03/OS/x86_64/](https://repo.openeuler.org/openEuler-20.09/OS/x86_64/) 或者[repo.openeuler.org/openEuler-21.03/OS/aarch64/](https://repo.openeuler.org/openEuler-20.09/OS/aarch64/) 需结合安装的到底是基于x86还是aarch64来定
 
 后续步骤跟openeuler20.09相同，值得庆祝的地方，openeuler21.03安装默认安装了火狐浏览器，可以愉快的上网了
