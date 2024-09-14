@@ -48,7 +48,7 @@ $ vcs import src < colcon.repos  # 这行要等很久
 跟catkin一样我们需要source环境变量
 
 ```
-souce install/local_setup.sh
+source install/local_setup.sh
 ```
 
 就可以使用colcon来编译整个项目工程

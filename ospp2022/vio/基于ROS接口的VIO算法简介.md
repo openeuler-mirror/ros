@@ -33,7 +33,7 @@ SVO2.0特点：
 
 ### （3）ORB_SLAM1-3算法
 
-ORB_SLAM 是西班牙 Zaragoza 大学的 Raúl Mur-Arta 编写的视觉 SLAM 系统。 它是一个完整的 SLAM 系统，包括视觉里程计、跟踪、回环检测，是一种完全基于稀疏特征点的单目 SLAM 系统，同时还有单目、双目、RGBD 相机的接口。其核心是使用 ORB (Orinted FAST and BRIEF) 作为整个视觉 SLAM 中的核心特征。经过数年的发展，ORB_SLAM也已经发展了三代：
+ORB_SLAM 是西班牙 Zaragoza 大学的 Raúl Mur-Arta 编写的视觉 SLAM 系统。 它是一个完整的 SLAM 系统，包括视觉里程计、跟踪、回环检测，是一种完全基于稀疏特征点的单目 SLAM 系统，同时还有单目、双目、RGBD 相机的接口。其核心是使用 ORB (Oriented FAST and BRIEF) 作为整个视觉 SLAM 中的核心特征。经过数年的发展，ORB_SLAM也已经发展了三代：
 
 开源代码：
 

@@ -6,8 +6,8 @@
 ```bash
 mkdir slam_gmapping
 cd slam_gmapping
-git clone git clone https://gitee.com/src-openeuler/slam_gmapping.git
-git clone git clone https://gitee.com/src-openeuler/openslam_gmapping.git
+git clone https://gitee.com/src-openeuler/slam_gmapping.git
+git clone https://gitee.com/src-openeuler/openslam_gmapping.git
 cd slam_gmapping
 tar -xzf ros-humble-slam-gmapping_1.4.2.orig.tar.gz
 cd ../openslam_gmapping
