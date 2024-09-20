@@ -33,7 +33,7 @@ ros2 pkg list | grep slam
 ```
 
 修改launch文件中
-讲`node_executable=....`改成`executable`
+将`node_executable=....`改成`executable`
 
 ![img.png](image/img_4.png)
 
