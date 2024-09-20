@@ -34,7 +34,7 @@ ROS1.0版本发布于2010年，基于PR2机器人开发了一系列机器人相�
   | Electric Emys     |   2011.8 |
   | Diamondback    |  2011.3  |
   | C Turtle       |  2010.8 |
-  | Box TurtleBox Turtle    | 2010.3 |
+  | Box Turtle    | 2010.3 |
 
 
 
