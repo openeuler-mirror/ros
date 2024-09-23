@@ -46,7 +46,7 @@ pip install empy
 
 构建源码打包的工程
 
-![img](pics/ros-install-5.png)![点击并拖拽以移动](data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==)
+![img](pics/ros-install-5.png)
 
 sources里面存放的是tar.gz结尾的压缩包,例如catkin-0.7.26.tar.gz
 
@@ -115,6 +115,11 @@ echo %{buildroot}
 %changelog
 * Thu May 28 2020 openEuler Buildteam <buildteam@openeuler.org> - 19.4-1
 - Package init
+```
+
+安装编译依赖包gcc-c++ cmake
+```
+yum-builddep catkin.spec
 ```
 
 打包成rpm 执行:
