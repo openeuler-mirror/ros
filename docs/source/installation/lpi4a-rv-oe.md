@@ -366,7 +366,7 @@ ros2 bag info 工具
 
 显示指定接口的详细内容。
 
-用于消息类型 Messsage：执行 `ros2 interface show geometry_msgs/msg/TwistStamped` ，输出如下，测试通过
+用于消息类型 Message：执行 `ros2 interface show geometry_msgs/msg/TwistStamped` ，输出如下，测试通过
 
 ![image-20231123215439182](image/rv-img/24.png)
 
