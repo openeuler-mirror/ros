@@ -1,4 +1,4 @@
-# ROS2 8_Rviz可视化
+# ROS2 Rviz可视化
 
 ## 1. URDF 统一机器人建模语言
 
