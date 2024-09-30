@@ -2,9 +2,9 @@
 
 ## 结构示意图       
 
-![img_5.png](image/img_5.png)
+![img_5.png](pics/img_5.png)
 
-![img_6.png](image/img_6.png)
+![img_6.png](pics/img_6.png)
 
 ##  代码分析
 
