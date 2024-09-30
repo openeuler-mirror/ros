@@ -64,6 +64,8 @@ openEuler ROS sig成立于2020年6月，主要目标是将ROS1/ROS2移植到open
    how-to-contribute/docs.md
    how-to-contribute/ros-porting-tools.md
    how-to-contribute/eulermaker.md
+   how-to-contribute/Navigation_Move_Base-Read.md
+   how-to-contribute/Navigation_Rotate_Recovery-Read.md
    
 .. toctree::
    :maxdepth: 1
