@@ -6,9 +6,9 @@
 
 * **同时`rotate_recovery::RotateRecovery`继承了`nav_core::RecoveryBehavior`接口，并以插件方式用于move_base node**。
 
-![img_7.png](image/img_7.png)
+![img_7.png](pics/img_7.png)
 
-![img_8.png](image/img_8.png)
+![img_8.png](pics/img_8.png)
 
 move_base 节点可以在机器人认为自己被卡住时选择性地执行恢复行为。默认情况下，move_base 节点将采取以下操作来清除空间：
 
@@ -32,7 +32,7 @@ move_base 节点可以在机器人认为自己被卡住时选择性地执行恢�
 
   清理 costmap 然后什么都不管，按照前进速度和转角速度走。从代码里可以看到，根据指定的距离，这是通过先清除全局 costmap 跟局部  costmap 一圈的 obstacle layer 的障碍，然后直接发指令实现的。由于只清除了 obstacle layer ，其实  static layer 的障碍还在，而且这里清不清除跟发指令关系不大，该撞上去的还是会撞的，相当于闭着眼睛往前走。
 
-![img_9.png](image/img_9.png)
+![img_9.png](pics/img_9.png)
 
 主要实现两个函数，一个负责初始化，另一个负责执行恢复行为。
 
