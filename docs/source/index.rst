@@ -38,6 +38,7 @@ openEuler ROS sig成立于2020年6月，主要目标是将ROS1/ROS2移植到open
    tutorials/creating-a-colcon-workspace.md
    tutorials/Understanding-ROS2-Services.md
    tutorials/Understanding-ROS2-Actions.md
+   tutorials/Rviz_Visualization.md
 
 .. toctree::
    :maxdepth: 1
