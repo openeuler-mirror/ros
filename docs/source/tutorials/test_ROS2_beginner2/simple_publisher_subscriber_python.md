@@ -8,7 +8,7 @@
 
 ### 下载 Talker示例代码：          
 `wget https://raw.githubusercontent.com/ros2/examples/humble/rclpy/topics/minimal_publisher/examples_rclpy_minimal_publisher/publisher_member_function.py`  
-**任然下载不了**        
+**仍然下载不了**        
 ### 编辑publisher_member_function.py：  
 
 `vi publisher_member_function.py`         
@@ -106,7 +106,7 @@ install_scripts=$base/lib/py_pubsub
 # 订阅者节点       
 `vi ros2_ws/src/py_pubsub/py_pubsub`        
 `wget https://raw.githubusercontent.com/ros2/examples/humble/rclpy/topics/minimal_subscriber/examples_rclpy_minimal_subscriber/subscriber_member_function.py`      
-**任然下载不了**        
+**仍然下载不了**        
 
 ### 运行结果与目录格式  
 ```
