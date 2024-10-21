@@ -25,6 +25,7 @@ openEuler ROS sig成立于2020年6月，主要目标是将ROS1/ROS2移植到open
    installation/install-guide.md
    installation/QEMU-install-oe.md
    installation/install-ros-humble.md
+   installation/Intel-nuc-install-oe.md
    installation/vm-install-oe.md
    installation/lpi4a-rv-oe.md
    installation/Raspberry-pi-oe.md

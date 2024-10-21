@@ -10,7 +10,12 @@ openEuler ROS在线文档（本文档）存储在ROS sig的门户仓库兼文档
 
 本地构建前可先参考docs/requirements.txt中的内容安装依赖项。
 
-在 `docs` 目录下编译文档：
+```
+pip install sphinx recommonmark sphinx_rtd_theme sphinx_markdown_tables
+```
+进入`docs` 目录，第一次编译前需执行命令`sphinx-quickstart`
+
+接着在 `docs` 目录下编译文档：
 
 > ```
 > make html
