@@ -1,4 +1,4 @@
-# RISC-V  lpi4a 上的测试openEuler ROS Humble
+# RISC-V  lpi4a 安装测试openEuler ROS Humble
 
 ## 环境信息
 
