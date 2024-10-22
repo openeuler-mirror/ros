@@ -10,7 +10,7 @@
 
 - Intel Nuc是X86架构，因此这里下载的镜像是openEuler-24.03-LTS-x86_64-dvd.iso
 
-- 可以使用Refus等工具制作安装启动盘。refus下载链接：https://rufus.ie/zh/#
+- 可以使用rufus等工具制作安装启动盘。rufus下载链接：https://rufus.ie/zh/#
 
 - 刻录启动盘：插入U盘，将下载的ISO镜像文件刻录到U盘中，如下图所示，选择好U盘和镜像后，点击`开始`按钮进行刻录，等待几分钟完成
 
