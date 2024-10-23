@@ -13,6 +13,15 @@ openEuler ROS在线文档（本文档）存储在ROS sig的门户仓库兼文档
 ```
 pip install sphinx recommonmark sphinx_rtd_theme sphinx_markdown_tables
 ```
+
+*如果不能直接使用pip安装Python包(一些系统不允许在系统的全局Python环境中使用pip安装Python包)，需要创建一个Python虚拟环境*
+
+``` bash
+python3 -m venv myenv
+echo "source myenv/bin/activate" >> ~/.bashrc
+source ~/.bashrc
+```
+
 进入`docs` 目录，第一次编译前需执行命令`sphinx-quickstart`
 
 接着在 `docs` 目录下编译文档：
