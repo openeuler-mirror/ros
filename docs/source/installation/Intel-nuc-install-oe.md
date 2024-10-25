@@ -38,7 +38,7 @@
 
 ![img_5png](image/nuc-install/5.jpeg)
 
-- 选择`Inatall openEuler 24.03-LTS`，点击`Enter`开始安装过程
+- 选择`Install openEuler 24.03-LTS`，点击`Enter`开始安装过程
 
 - 整个安装过程与前面的虚拟机安装过程一致，这里不再赘述
 
