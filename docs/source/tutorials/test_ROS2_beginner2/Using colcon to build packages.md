@@ -1,6 +1,6 @@
 # 使用colcon构建功能包
 确保已经安装好ROS
- - [安装 ROS 2 Humble](../installation/install-ros-humble.md)
+ - [安装 ROS 2 Humble](https://openeuler-ros-docs.readthedocs.io/en/latest/installation/install-ros-humble.html)
 ## 安装colcon 
 终端输入以下命令安装colcon：
 
