@@ -6,5 +6,3 @@ openEuler ROS的基础教程主要参考ROS官方教程[ROS-Humble-Tutorials](ht
 
 ![image-20231123211408235](image/humble-small.png)
 
- - [创建 colcon 工作区](./creating-a-colcon-workspace.md)
- - [测试小乌龟](./use-turtlesim.md)

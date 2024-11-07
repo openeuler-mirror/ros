@@ -27,7 +27,30 @@
 测试环境:
  - Ubuntu 22.04.4 LTS
 
-#### 编译安装 qemu-system-riscv64-8.2.6
+#### 编译安装 qemu-system-riscv64
+
+有两种方式安装qemu-system-riscv64，一种是包管理器安装，另一种是源码编译安装。注意运行24.03的openEuler for RISC-V要求qemu版本大于8.1，如果包管理器中的qemu版本太低需要使用源码编译安装。
+
+
+##### 包管理器直接安装
+
+
+1. x86架构
+```bash
+sudo apt install qemu-system-x86_64
+```
+
+2. arm架构
+```bash
+sudo apt install qemu-system-arm
+```
+
+3. RISC-V架构
+```bash
+sudo apt install qemu-system-riscv64
+```
+
+##### 源码编译安装
 
 参考文章：
 
@@ -94,7 +117,53 @@ source ~/.bashrc
 
 ### 2.1安装openEuler24.03操作系统（X86架构）
 
-TODO
+#### 设置img
+```
+qemu-img create -f qcow2 openEuler-24.03-LTS-SP3-x86.img 50G
+```
+
+#### 安装虚拟机
+
+其中有部分需要修改
+根据安装路径，**修改UEFI固件地址，修改网卡名，修改img路径，修改iso路径**
+
+```
+qemu-system-aarch64 -m 30000 -cpu cortex-a72 -smp 8,cores=2,threads=2,sockets=2 -M virt -bios D:\Programs\Qemu\QEMU_EFI.fd -net nic -net tap,ifname=tap1212 -device nec-usb-xhci -device usb-kbd -device usb-mouse -device VGA -drive if=none,file=E:\VirtuakMachine\mirror\openEuler-24.03-LTS-x86_64-dvd.iso,id=cdrom,media=cdrom -device virtio-scsi-device -device scsi-cd,drive=cdrom -drive if=none,file=E:\VirtuakMachine\openEuler-24.03-LTS-SP3-x86.img,id=hd0 -device virtio-blk-device,drive=hd0
+```
+
+-m 4000 表示分配给虚拟机的内存最大4000MB，可以直接使用 -m 4G
+-cpu cortex-a72 指定CPU类型，还可以选择cortex-a53、cortex-a57等
+-smp 4,cores=4,threads=1,sockets=1 指定虚拟机最大使用的CPU核心数等
+-M virt 指定虚拟机类型为virt，具体支持的类型可以使用 qemu-system-aarch64 -M help 查看
+-bios F:\QEMU\QEMU_EFI.fd 指定UEFI固件文件
+-net tap,ifname=tap1212 启用网络功能（ifname=tap1212中的tap1212请修改为前面步骤中自己修改后的网卡名称）
+-device nec-usb-xhci -device usb-kbd -device usb-mouse 启用USB鼠标等设备
+-device VGA 启用VGA视图，对于图形化的Linux这条很重要！
+-drive if=none,file=F:\QEMU\openEuler-20.03-LTS-SP3-aarch64-dvd.iso,id=cdrom,media=cdrom 指定光驱使用镜像文件
+-device virtio-scsi-device -device scsi-cd,drive=cdrom 指定光驱硬件类型
+-drive if=none,file=F:\QEMU\openEuler-20.03-LTS-SP3-aarch64.img 指定硬盘镜像文件
+
+#### 启动虚拟机
+```
+qemu-system-aarch64 -m 16000 -cpu cortex-a72 -smp 8,cores=2,threads=2,sockets=2 -M virt -bios D:\Programs\Qemu\QEMU_EFI.fd -net nic -net tap,ifname=tap1212 -device nec-usb-hci -device usb-kbd -device usb-mouse -device VGA -drive if=none,file=D:\VirtuakMachine\qemu\openEuler-24.03-LTS-SP3-aarch64.img,id=hd0 -device virtio-blk-device,drive=hd0
+```
+#### 虚拟机配置
+
+安装dde桌面
+```
+yum install dde
+```
+
+设置以图形化界面启动
+```
+systemctl set-default graphical.target
+```
+
+重启生效
+```
+reboot
+```
+
 
 
 
@@ -149,30 +218,19 @@ qemu-system-aarch64 -m 16000 -cpu cortex-a72 -smp 8,cores=2,threads=2,sockets=2 
 mkdir oerv2403 && cd oerv2403
 ```
 
-镜像源的路径是`/openeuler/openEuler-24.03-LTS/virtual_machine_img/riscv64/`
+为了后续的调试和可视化呈现，我们需要安装带有桌面的镜像，镜像源的路径是 `/openeuler-sig-riscv/openEuler-RISC-V/devel/20240829/v0.1/QEMU/`
 
 ```bash
-wget https://repo.openeuler.org/openEuler-24.03-LTS/virtual_machine_img/riscv64/RISCV_VIRT_CODE.fd
-wget https://repo.openeuler.org/openEuler-24.03-LTS/virtual_machine_img/riscv64/RISCV_VIRT_VARS.fd
-wget https://repo.openeuler.org/openEuler-24.03-LTS/virtual_machine_img/riscv64/fw_dynamic_oe_2403_penglai.bin
-wget https://repo.openeuler.org/openEuler-24.03-LTS/virtual_machine_img/riscv64/openEuler-24.03-LTS-riscv64.qcow2.xz
-wget https://repo.openeuler.org/openEuler-24.03-LTS/virtual_machine_img/riscv64/start_vm.sh
-wget https://repo.openeuler.org/openEuler-24.03-LTS/virtual_machine_img/riscv64/start_vm_penglai.sh
+wget https://mirror.iscas.ac.cn/openeuler-sig-riscv/openEuler-RISC-V/devel/20240829/v0.1/QEMU/start_vm_xfce.sh
+wget https://mirror.iscas.ac.cn/openeuler-sig-riscv/openEuler-RISC-V/devel/20240829/v0.1/QEMU/openEuler-24.03-V1-xfce-qemu-devel.qcow2.zst
+wget https://mirror.iscas.ac.cn/openeuler-sig-riscv/openEuler-RISC-V/devel/20240829/v0.1/QEMU/fw_payload_oe_uboot_2304.bin
 ```
 
-其中 `start_vm_penglai.sh` 是启用蓬莱 TEE 功能的脚本
+下载完成后，执行 `unzstd openEuler-24.03-V1-xfce-qemu-devel.qcow2.zst` 命令对镜像解压，执行 `bash ./start_vm_xfce.sh` 就可以运行虚拟机了
 
-此时，执行 `xz -d openEuler-24.03-LTS-riscv64.qcow2.xz` 命令对镜像解压，执行 `bash ./start_vm_penglai.sh` 就可以运行虚拟机了
+默认的`root`/`openeuler` 用户密码是`openEuler12#$`
 
-默认的`root`用户密码是`openEuler12#$`
-
-#### 启动 xfce 桌面
-
-使用上面的镜像[无法启动xfce桌面](https://github.com/discodyer/shutsuryoku/issues/1)，请使用[这个镜像](https://mirror.iscas.ac.cn/openeuler-sig-riscv/openEuler-RISC-V/devel/20240829/v0.1/QEMU/)
-
-和前面一样，只需要下载里面的镜像和固件，解压后再运行脚本就能启动xfce桌面环境了
-
-## 3.安装openEuler桌面环境
+## 3.安装openEuler桌面环境(RISC-V架构的openEuler已经安装了桌面环境，可跳过)
 
 openEuler默认不带桌面，为了方便ROS开发测试，可选择安装UKUI等桌面：[官方教程](https://docs.openeuler.org/zh/docs/24.03_LTS/docs/desktop/%E5%AE%89%E8%A3%85UKUI.html#)
 
