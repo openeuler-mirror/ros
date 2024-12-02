@@ -27,7 +27,30 @@
 测试环境:
  - Ubuntu 22.04.4 LTS
 
-#### 编译安装 qemu-system-riscv64-8.2.6
+#### 编译安装 qemu-system-riscv64
+
+有两种方式安装qemu-system-riscv64，一种是包管理器安装，另一种是源码编译安装。注意运行24.03的openEuler for RISC-V要求qemu版本大于8.1，如果包管理器中的qemu版本太低需要使用源码编译安装。
+
+
+##### 包管理器直接安装
+
+
+1. x86架构
+```bash
+sudo apt install qemu-system-x86_64
+```
+
+2. arm架构
+```bash
+sudo apt install qemu-system-arm
+```
+
+3. RISC-V架构
+```bash
+sudo apt install qemu-system-riscv64
+```
+
+##### 源码编译安装
 
 参考文章：
 
@@ -195,30 +218,19 @@ qemu-system-aarch64 -m 16000 -cpu cortex-a72 -smp 8,cores=2,threads=2,sockets=2 
 mkdir oerv2403 && cd oerv2403
 ```
 
-镜像源的路径是`/openeuler/openEuler-24.03-LTS/virtual_machine_img/riscv64/`
+为了后续的调试和可视化呈现，我们需要安装带有桌面的镜像，镜像源的路径是 `/openeuler-sig-riscv/openEuler-RISC-V/devel/20240829/v0.1/QEMU/`
 
 ```bash
-wget https://repo.openeuler.org/openEuler-24.03-LTS/virtual_machine_img/riscv64/RISCV_VIRT_CODE.fd
-wget https://repo.openeuler.org/openEuler-24.03-LTS/virtual_machine_img/riscv64/RISCV_VIRT_VARS.fd
-wget https://repo.openeuler.org/openEuler-24.03-LTS/virtual_machine_img/riscv64/fw_dynamic_oe_2403_penglai.bin
-wget https://repo.openeuler.org/openEuler-24.03-LTS/virtual_machine_img/riscv64/openEuler-24.03-LTS-riscv64.qcow2.xz
-wget https://repo.openeuler.org/openEuler-24.03-LTS/virtual_machine_img/riscv64/start_vm.sh
-wget https://repo.openeuler.org/openEuler-24.03-LTS/virtual_machine_img/riscv64/start_vm_penglai.sh
+wget https://mirror.iscas.ac.cn/openeuler-sig-riscv/openEuler-RISC-V/devel/20240829/v0.1/QEMU/start_vm_xfce.sh
+wget https://mirror.iscas.ac.cn/openeuler-sig-riscv/openEuler-RISC-V/devel/20240829/v0.1/QEMU/openEuler-24.03-V1-xfce-qemu-devel.qcow2.zst
+wget https://mirror.iscas.ac.cn/openeuler-sig-riscv/openEuler-RISC-V/devel/20240829/v0.1/QEMU/fw_payload_oe_uboot_2304.bin
 ```
 
-其中 `start_vm_penglai.sh` 是启用蓬莱 TEE 功能的脚本
+下载完成后，执行 `unzstd openEuler-24.03-V1-xfce-qemu-devel.qcow2.zst` 命令对镜像解压，执行 `bash ./start_vm_xfce.sh` 就可以运行虚拟机了
 
-此时，执行 `xz -d openEuler-24.03-LTS-riscv64.qcow2.xz` 命令对镜像解压，执行 `bash ./start_vm_penglai.sh` 就可以运行虚拟机了
+默认的`root`/`openeuler` 用户密码是`openEuler12#$`
 
-默认的`root`用户密码是`openEuler12#$`
-
-#### 启动 xfce 桌面
-
-使用上面的镜像[无法启动xfce桌面](https://github.com/discodyer/shutsuryoku/issues/1)，请使用[这个镜像](https://mirror.iscas.ac.cn/openeuler-sig-riscv/openEuler-RISC-V/devel/20240829/v0.1/QEMU/)
-
-和前面一样，只需要下载里面的镜像和固件，解压后再运行脚本就能启动xfce桌面环境了
-
-## 3.安装openEuler桌面环境
+## 3.安装openEuler桌面环境(RISC-V架构的openEuler已经安装了桌面环境，可跳过)
 
 openEuler默认不带桌面，为了方便ROS开发测试，可选择安装UKUI等桌面：[官方教程](https://docs.openeuler.org/zh/docs/24.03_LTS/docs/desktop/%E5%AE%89%E8%A3%85UKUI.html#)
 

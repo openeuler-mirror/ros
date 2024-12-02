@@ -78,7 +78,7 @@ source：
 
 可以看到参数的默认值，但是希望能够自己设置它，有两种方法可以实现这一点。
 
-## 通过consle控制台改变
+## 通过console控制台改变
 打开另一终端，再次source环境，运行以下命令：  
 `ros2 param list` 
 终端返回，自定义参数：my_parameter，可以在终端通过简单的命令行改变：  
@@ -107,7 +107,7 @@ def generate_launch_description():
     ])
 
 ```
-当启动节点parameter_node时，将my_parameter设置为earth，并·通过添加下面的两行代码，确保在控制台中打印输出：
+当启动节点parameter_node时，将my_parameter设置为earth，并通过添加下面的两行代码，确保在控制台中打印输出：
 ```
 output="screen",
 emulate_tty=True,

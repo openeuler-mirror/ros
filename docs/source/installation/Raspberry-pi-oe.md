@@ -1,5 +1,6 @@
 # 树莓派安装测试openEuler ROS Humble
-# ROS2 Humble 在 openEuler-24.03-LTS-raspi-aarch64 上的测试
+
+ROS2 Humble 在 openEuler-24.03-LTS-raspi-aarch64 上的安装测试
 
 ## 测试环境
 ### 硬件信息

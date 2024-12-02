@@ -26,6 +26,7 @@ openEuler ROS sig成立于2020年6月，主要目标是将ROS1/ROS2移植到open
    installation/QEMU-install-oe.md
    installation/install-ros-humble.md
    installation/install-ros-noetic.md
+   installation/Intel-nuc-install-oe.md
    installation/vm-install-oe.md
    installation/lpi4a-rv-oe.md
    installation/Raspberry-pi-oe.md
@@ -35,10 +36,13 @@ openEuler ROS sig成立于2020年6月，主要目标是将ROS1/ROS2移植到open
    :caption: 基础教程
    
    tutorials/guide.md
+   tutorials/base_demo_01.md
    tutorials/use-turtlesim.md
-   tutorials/creating-a-colcon-workspace.md
    tutorials/Understanding-ROS2-Services.md
    tutorials/Understanding-ROS2-Actions.md
+   tutorials/Understanding-ROS2-Topics.md
+   tutorials/test_ROS2_beginner2/Using colcon to build packages.md
+   tutorials/test_ROS2_beginner2/Creat_package.md
    tutorials/Rviz_Visualization.md
 
 .. toctree::
