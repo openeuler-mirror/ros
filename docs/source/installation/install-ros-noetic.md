@@ -8,7 +8,7 @@
 
 按照[官网教程](https://docs.openeuler.org/zh/docs/24.03_LTS/docs/desktop/Install_XFCE.html)安装xfce桌面环境
 
-## 添加ROS　Noetic软件源
+## 添加ROS Noetic软件源
 
 下面以openEuler 24.03为例介绍软件源的配置过程。
 
