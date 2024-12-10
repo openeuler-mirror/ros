@@ -88,3 +88,7 @@ rosrun turtlesim turtle_teleop_key
 ![image](image/turtlesim_noetic-2.png)
 
 若小乌龟仿真测试通过，则说明openEuler ROS Noetic已成功安装～
+
+## 后续阅读
+
+- [ROS Noetic catkin 构建功能包并测试通信](/ros1/basic-catkin-package-tutorial.md)
