@@ -19,7 +19,7 @@
 - 每个包必须有自己的目录
   - 这意味着不能有嵌套包，也不能有多个包共享同一个目录。
 
-最简单的包可能具有如下结构：
+最简单的包具有如下结构：
 
 ```
 my_package/
@@ -136,11 +136,139 @@ catkin_install_python(PROGRAMS scripts/listener.py
 
 ### 编写简单的服务和客户端（C++）
 
-TODO
+让我们创建一个srv文件
+
+```bash
+roscd beginner_tutorials
+mkdir srv
+curl -o srv/AddTwoInts.srv https://raw.githubusercontent.com/ros/ros_tutoria
+ls/refs/heads/noetic-devel/rospy_tutorials/srv/AddTwoInts.srv
+```
+
+在package.xml中添加下面两行
+
+```
+  <build_depend>message_generation</build_depend>
+  <exec_depend>message_runtime</exec_depend>
+```
+
+然后修改CMakeLists.txt，大概在第14行的位置添加message_generation
+
+```
+# 不要只将此行添加到 CMakeLists.txt 中，请修改现有行
+find_package(catkin REQUIRED COMPONENTS
+  roscpp
+  rospy
+  std_msgs
+  message_generation
+)
+```
+
+删除 # 以取消注释以下行：
+
+```
+# add_service_files(
+#   FILES
+#   Service1.srv
+#   Service2.srv
+# )
+```
+
+并将占位符 Service*.srv 文件替换为您的服务文件：
+
+```
+add_service_files(
+  FILES
+  AddTwoInts.srv
+)
+```
+
+下载源码文件
+
+```bash
+roscd beginner_tutorials
+curl -o src/add_two_ints_server.cpp https://raw.githubusercontent.com/ros/ros_tutorials/refs/heads/noetic-devel/roscpp_tutorials/add_two_ints_server/add_two_ints_server.cpp
+curl -o src/add_two_ints_client.cpp https://raw.githubusercontent.com/ros/ros_tutorials/refs/heads/noetic-devel/roscpp_tutorials/add_two_ints_client/add_two_ints_client.cpp
+```
+
+在CMakeLists.txt添加下面的内容
+
+```
+add_executable(add_two_ints_server src/add_two_ints_server.cpp)
+target_link_libraries(add_two_ints_server ${catkin_LIBRARIES})
+add_dependencies(add_two_ints_server beginner_tutorials_gencpp)
+
+add_executable(add_two_ints_client src/add_two_ints_client.cpp)
+target_link_libraries(add_two_ints_client ${catkin_LIBRARIES})
+add_dependencies(add_two_ints_client beginner_tutorials_gencpp)
+```
 
 ### 编写简单的服务和客户端（Python）
 
-TODO
+让我们创建一个srv文件
+
+```bash
+roscd beginner_tutorials
+mkdir srv
+curl -o srv/AddTwoInts.srv https://raw.githubusercontent.com/ros/ros_tutoria
+ls/refs/heads/noetic-devel/rospy_tutorials/srv/AddTwoInts.srv
+```
+
+在package.xml中添加下面两行
+
+```
+  <build_depend>message_generation</build_depend>
+  <exec_depend>message_runtime</exec_depend>
+```
+
+然后修改CMakeLists.txt，大概在第14行的位置添加message_generation
+
+```
+# 不要只将此行添加到 CMakeLists.txt 中，请修改现有行
+find_package(catkin REQUIRED COMPONENTS
+  roscpp
+  rospy
+  std_msgs
+  message_generation
+)
+```
+
+删除 # 以取消注释以下行：
+
+```
+# add_service_files(
+#   FILES
+#   Service1.srv
+#   Service2.srv
+# )
+```
+
+并将占位符 Service*.srv 文件替换为您的服务文件：
+
+```
+add_service_files(
+  FILES
+  AddTwoInts.srv
+)
+```
+
+下载源码文件
+
+```bash
+roscd beginner_tutorials
+curl -o scripts/add_two_ints_client.py https://raw.githubusercontent.com/ros/ros_tutorials/refs/heads/noetic-devel/rospy_tutorials/005_add_two_ints/add_two_ints_client
+chmod +x scripts/add_two_ints_client.py
+curl -o scripts/add_two_ints_server.py https://raw.githubusercontent.com/ros/ros_tutorials/refs/heads/noetic-devel/rospy_tutorials/005_add_two_ints/add_two_ints_server
+chmod +x scripts/add_two_ints_server.py
+```
+
+在CMakeLists.txt添加下面的内容
+
+```
+catkin_install_python(PROGRAMS scripts/add_two_ints_server.py scripts/add_two_ints_client.py
+  DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+)
+```
 
 ## 编译工作空间
 
@@ -210,11 +338,27 @@ rosrun beginner_tutorials listener.py   # (Python)
 
 ## 测试Service节点通信功能
 
-TODO
+
+运行服务端
+
+```
+$ rosrun beginner_tutorials add_two_ints_server
+[ INFO] [1733139026.126561451]: request: x=1, y=3
+[ INFO] [1733139026.127457276]:   sending back response: [4]
+```
+
+运行客户端
+
+```
+$ rosrun beginner_tutorials add_two_ints_client 1 3
+[ INFO] [1733139026.127719882]: Sum: 4
+```
+
+目前python版本的代码运行起来服务端会出现异常，C++版本正常
 
 ## 参考链接
 
-- https://wiki.ros.org/ROS/Tutorials/WritingPublisherSubscriber%28c%2B%2B%29
-- https://wiki.ros.org/ROS/Tutorials/WritingPublisherSubscriber%28python%29
-- https://wiki.ros.org/ROS/Tutorials/WritingServiceClient%28c%2B%2B%29
-- https://wiki.ros.org/ROS/Tutorials/WritingServiceClient%28python%29
+- [Writing a Simple Publisher and Subscriber (C++)](https://wiki.ros.org/ROS/Tutorials/WritingPublisherSubscriber%28c%2B%2B%29)
+- [Writing a Simple Publisher and Subscriber (Python)](https://wiki.ros.org/ROS/Tutorials/WritingPublisherSubscriber%28python%29)
+- [Writing a Simple Service and Client (C++)](https://wiki.ros.org/ROS/Tutorials/WritingServiceClient%28c%2B%2B%29)
+- [Writing a Simple Service and Client (Python)](https://wiki.ros.org/ROS/Tutorials/WritingServiceClient%28python%29)
