@@ -8,7 +8,7 @@
 
 按照[官网教程](https://docs.openeuler.org/zh/docs/24.03_LTS/docs/desktop/Install_XFCE.html)安装xfce桌面环境
 
-## 添加ROS　Noetic软件源
+## 添加ROS Noetic软件源
 
 下面以openEuler 24.03为例介绍软件源的配置过程。
 
@@ -88,3 +88,7 @@ rosrun turtlesim turtle_teleop_key
 ![image](image/turtlesim_noetic-2.png)
 
 若小乌龟仿真测试通过，则说明openEuler ROS Noetic已成功安装～
+
+## 后续阅读
+
+- [ROS Noetic catkin 构建功能包并测试通信](/ros1/basic-catkin-package-tutorial.md)
