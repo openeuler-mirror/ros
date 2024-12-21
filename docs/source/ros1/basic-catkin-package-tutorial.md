@@ -270,6 +270,13 @@ catkin_install_python(PROGRAMS scripts/add_two_ints_server.py scripts/add_two_in
 )
 ```
 
+注意，目前 rospy 在某些情况下与 Python 3.11 的 logging 模块存在问题，所以需要将日志等级调至ERROR，否则会出现递归调用错误
+
+```python
+# 在init_node的地方设置log_level=rospy.ERROR
+rospy.init_node(NAME, log_level=rospy.ERROR)
+```
+
 ## 编译工作空间
 
 编译工作空间需要回到工作空间目录
