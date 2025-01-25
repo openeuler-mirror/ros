@@ -102,7 +102,7 @@ gen_depend() 会根据不同的依赖类型（如 depend, build_depend, exec_dep
 
 
 
-### gen-pkg-spec.sh
+# gen-pkg-spec.sh
 准备工作：首先通过 prepare() 函数进行初始化，确保所有必要的文件和目录存在。  
 为每个包生成 spec 文件：通过读取 ROS 包列表，脚本逐个处理包的依赖关系、版本、描述信息等，最终生成 spec 文件。
 包修复：如果某个包有特殊的修复要求（如通过 source.fix 或 prep.fix 文件），则会将这些修复应用到 spec 文件中。
@@ -127,10 +127,11 @@ ros-porting-tools\
 ![文件结构](./image/Screenshot_2025-01-24_12-36-08.png)		  		
 		  		
 ## 2.运行get-repo-list.sh解析ros-projects.list
-![解析Git仓库信息](./iamge/Screenshot_2025-01-24_12-59-59.png)
+![解析Git仓库信息](./image/Screenshot_2025-01-24_12-59-59.png)
 
 ## 3.执行vcs import src < ros.repos
 文件结构
+```
 ros-porting-tools\
 		  base.sh
 		  get-repo-list.sh
@@ -143,7 +144,8 @@ ros-porting-tools\
 在这里执行	    \output
 			
 		  	\src	
-![下载源码](./iamge/Screenshot_2025-01-24_12-59-59.png)
+```
+![下载源码](./image/Screenshot_2025-01-24_12-59-59.png)
 这一步是根据解析的链接下载源码
 
 ## 4.执行get-pkg-src.sh
@@ -163,7 +165,7 @@ ros-porting-tools\    在这里执行
 		  	\src
 		  		\许多源码包
 ```
-![分析上下游](./iamge/截图%202025-01-25%2014-19-20.png)
+![分析上下游](./image/截图%202025-01-25%2014-19-20.png)
 
 ## 5.执行get-pkg-deps.sh
 文件结构
@@ -186,6 +188,7 @@ ros-porting-tools\    在这里执行
 ![处理包的依赖关系、版本、描述信息](./image/截图%202025-01-25%2014-32-07.png)
 
 ## 6.执行gen-pkg-spec.sh
+```
 ros-porting-tools\    在这里执行
 		  base.sh
 		  get-repo-list.sh
@@ -201,7 +204,8 @@ ros-porting-tools\    在这里执行
 		  		\许多源码包
 			ros-pkg-src.list
 			\deps
-![打包](./iamge/截图%202025-01-25%2014-43-10.png)
+```
+![打包](./image/截图%202025-01-25%2014-43-10.png)
 部分源码包可以打包成功
 
 ## 7.上传tar包和spec到对应的ros仓库
