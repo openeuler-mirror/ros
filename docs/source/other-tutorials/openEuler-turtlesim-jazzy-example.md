@@ -1,4 +1,4 @@
-# openEuler 上启动小乌龟示例
+# openEuler 上移植适配 ROS Jazzy 并测试小乌龟
 
 ## 概述
 
