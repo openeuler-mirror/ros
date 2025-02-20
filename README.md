@@ -59,10 +59,6 @@ committers:
     name: niutao
     organization: Huawei
     email: niutao@huawei.com
-  - gitee_id: microseyuyu
-    name: Sebastian
-    organization: ISCAS
-    email: microseyuyu@gmail.com
 ```
 
 ## ROS SIG维护的软件包列表
