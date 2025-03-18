@@ -81,8 +81,14 @@ if __name__ == '__main__':
 
 ```
 
-启动后，目标检测结果会出现在`/yolo/detections`话题中，如果启用了debug，还会有`/yolo/dbg_image`的图像输出
+启动后，目标检测结果会出现在`/yolo/detections`话题中，如果启用了debug，还会有`/yolo/dbg_image`的图像输出   
 
-如下是未启动debug情况下的检测结果示例输出
+需要注意的是，`tracking`和`3d`模式的优先级比较高，如果启用时无深度图像，会导致`dbg_image`无输出，按以下方式启动即可正常显示：
+```shell
+ros2 launch yolo_bringup yolov11.launch.py use_3d:=False use_tracking:=False
+```
+
+检测结果示例输出:
 ![alt text](./image/yolo-ros/image.png)
-
+# TODO
+1. 在基于risc-v的开发版上进行测试
