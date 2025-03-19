@@ -1,6 +1,6 @@
 # MQTT-ROS Client的安装与测试
 ## 环境配置
-
+系统环境：OpenEuler 24.03 LTS x86_64 in WSL
 ### 添加源
 
 ```shell
