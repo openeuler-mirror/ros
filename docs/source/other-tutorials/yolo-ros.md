@@ -1,8 +1,10 @@
 # 在openEuler系统上使用yolo算法进行目标检测
 ## 环境配置
-### 硬件平台x86_64
+
+### 配置ROS开发环境
+如果已经配置好，请跳过
+#### x86_64
 系统环境：openEuler 24.03 LTS
-#### 配置ROS开发环境
 ```shell
 bash -c 'cat << EOF |sudo tee /etc/yum.repos.d/ROS.repo
 [openEulerROS-humble]
@@ -14,25 +16,43 @@ EOF'
 sudo dnf install ros-humble-desktop python3-pip
 pip3 install pytest colcon-common-extensions
 ```
-#### 配置yolo
+#### arm
+系统环境：openEuler 24.03 LTS sp1    
+硬件环境：树莓派5
+```shell
+bash -c 'cat << EOF > /etc/yum.repos.d/ROS.repo
+[openEulerROS-humble]
+name=openEulerROS-humble
+baseurl=https://eulermaker.compass-ci.openeuler.openatom.cn/api/ems1/repositories/ROS-SIG-Multi-Version_ros-humble_openEuler-24.03-LTS-TEST4/openEuler%3A24.03-LTS/aarch64/
+enabled=1
+gpgcheck=0
+EOF'
+sudo dnf install ros-humble-desktop python3-pip
+pip3 install --user pytest colcon-common-extensions
+echo 'export PATH=$PATH:$HOME/.local/bin' > ~/.bashrc # 添加本地包到PATH
+#[可选]echo 'source /opt/ros/humble/setup.bash' >~/.bashrc
+```
+#### risc-v 
+TODO
+### 配置yolo
 这里采用[yolo-ros](https://github.com/mgonzs13/yolo_ros)包作为示例
 ```shell
 #!/bin/bash
 #source /opt/ros/humble/setup.bash
-mkdir -p ~/yolo-ws/src
+mkdir -p ~/yolo_ws/src
 cd ~/yolo_ws/src 
 git clone https://github.com/mgonzs13/yolo_ros.git
 pip3 install --user lap ultralytics typing-extensions
 cd ~/yolo_ws
 colcon build
 ```
-#### 配置相机
+### 配置相机
 需要根据自己的相机型号选择合适的ros包，这里使用`v4l2-camera`
 ```shell
 sudo dnf install ros-humble-v4l2-camera
 ```
 
-#### 运行yolo
+## 运行yolo
 ```shell
 #!/bin/bash
 #source /opt/ros/humble/setup.bash 
@@ -85,10 +105,17 @@ if __name__ == '__main__':
 
 需要注意的是，`tracking`和`3d`模式的优先级比较高，如果启用时无深度图像，会导致`dbg_image`无输出，按以下方式启动即可正常显示：
 ```shell
-ros2 launch yolo_bringup yolov11.launch.py use_3d:=False use_tracking:=False
+ros2 launch yolo_bringup yolov11.launch.py use_3d:=False use_tracking:=False input_image_topic:=/your/image
+```
+
+对于树莓派，由于性能限制，且无cuda，需要指定cpu运算，最好选用n模型，测试帧率约为3~5fps
+```shell
+ros2 launch yolo_bringup yolov11.launch.py use_3d:=False use_tracking:=False input_image_topic:=/your/image model:=yolo11n.pt device:=cpu
 ```
 
 检测结果示例输出:
 ![alt text](./image/yolo-ros/image.png)
-# TODO
+
+
+## TODO
 1. 在基于risc-v的开发版上进行测试
