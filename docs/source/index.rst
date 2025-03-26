@@ -48,7 +48,8 @@ openEuler ROS sig成立于2020年6月，主要目标是将ROS1/ROS2移植到open
 .. toctree::
    :maxdepth: 1
    :caption: 建图与导航
-   
+  
+   slam-nav/openEuler_gazebo_nav2.md 
    slam-nav/guide.md
    slam-nav/slam_gmapping.md
    slam-nav/stage_ros.md
