@@ -114,7 +114,7 @@ ros2 launch yolo_bringup yolov11.launch.py use_3d:=False use_tracking:=False inp
 ```
 
 检测结果示例输出:
-![alt text](./image/yolo-ros/image.png)
+![alt text](./image/yolo-ros/desktop.png)
 
 
 ## TODO
