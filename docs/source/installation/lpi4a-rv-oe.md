@@ -1,4 +1,4 @@
-# RISC-V  lpi4a 安装测试openEuler ROS Humble
+# RISC-V lpi4a 安装测试openEuler ROS Humble
 
 ## 环境信息
 
@@ -7,34 +7,13 @@
 1. LicheePi 4A
 2. 处理器 TH1520
 3. 内存 16GB
+4. eMMC 128GB
 
 #### 软件信息
 
-1. OS 版本：openEuler-24.03-lpi4a
-2. 镜像地址：https://www.openeuler.org/zh/download/?version=openEuler%2024.03%20LTS
+1. OS 版本：openEuler-24.03-LTS-SP1-riscv64-lpi4a
+2. 镜像地址：<https://www.openeuler.org/zh/download/?version=openEuler%2024.03%20LTS>
 3. 软件源：[https://build-repo.tarsier-infra.isrc.ac.cn/openEuler:/ROS/24.03/](https://build-repo.tarsier-infra.isrc.ac.cn/openEuler:/ROS/24.03/)
-
-## 刷写镜像并启动
-
-前往官网，下载 ` u-boot-with-spl-lpi4a-16g.bin`,`boot`,`root`三个文件
-
-按住板上的BOOT按键不放，然后插入 USB-C 线缆上电（线缆另一头接 PC ），进入USB烧录模式
-
-![](https://wiki.sipeed.com/hardware/zh/lichee/th1520/lpi4a/assets/burn_image/press_boot.png)
-
-在Linux系统下，输入如下命令
-
-```
-sudo ./fastboot flash ram ./images/u-boot-with-spl-lpi4a-16g.bin
-sudo ./fastboot reboot
-sudo ./fastboot flash uboot ./images/u-boot-with-spl-lpi4a-16g.bin
-sudo ./fastboot flash boot ./images/boot_sing.ext4
-sudo ./fastboot flash root ./images/rootfs-sing.ext4
-```
-
-随后耐心等待烧录完成即可![2](image/rv-img/123.png)
-
-由于oERV 24.03主线用的是 6.6 同源内核，所以没有HDMI驱动，因此需要使用ssh进行登录
 
 登录用户名和密码如下
 
@@ -42,6 +21,139 @@ sudo ./fastboot flash root ./images/rootfs-sing.ext4
 
 - 密码：`openEuler12#$`
 
+## 刷写镜像并启动
+
+前往官网，下载 `u-boot-with-spl-lpi4a-16g.bin`,`boot.ext4.zst`,`root.ext4.zst`三个文件
+，如果你的Licheepi4A的RAM是8G版本，请下载`u-boot-with-spl-lpi4a.bin`
+
+下载完成后的`boot.ext4.zst`和`root.ext4.zst`需要解压后才能烧录（uboot文件不需要解压），Windows系统请使用[7-Zip-zstd](https://github.com/mcmilk/7-Zip-zstd/releases)，Linux系统直接使用`zstd -d`命令解压
+
+按住板上的BOOT按键不放，然后插入 USB-C 线缆上电（线缆另一头接 PC ），进入USB烧录模式
+
+![](https://wiki.sipeed.com/hardware/zh/lichee/th1520/lpi4a/assets/burn_image/press_boot.png)
+
+### Linux刷写eMMC方式安装
+
+请注意！从 eMMC 启动前请先取出 SD 卡！
+
+此处演示环境是 Ubuntu22.04
+
+首先确保你系统内有wget、zstd、fastboot工具
+
+```bash
+sudo apt update
+sudo apt install wget zstd fastboot
+```
+
+<!-- 下载并解压缩fastboot
+
+```bash
+wget https://dl.google.com/android/repository/platform-tools_r34.0.5-linux.zip
+unzip platform-tools_r34.0.5-linux.zip && cd platform-tools
+``` -->
+
+使用wget命令下载uboot、boot及root文件
+
+```bash
+wget https://fast-mirror.isrc.ac.cn/openeuler/openEuler-24.03-LTS-SP1/embedded_img/riscv64/lpi4a/u-boot-with-spl-lpi4a-16g.bin
+wget https://fast-mirror.isrc.ac.cn/openeuler/openEuler-24.03-LTS-SP1/embedded_img/riscv64/lpi4a/openEuler-24.03-LTS-SP1-riscv64-lpi4a-base-boot.ext4.zst
+wget https://fast-mirror.isrc.ac.cn/openeuler/openEuler-24.03-LTS-SP1/embedded_img/riscv64/lpi4a/openEuler-24.03-LTS-SP1-riscv64-lpi4a-base-root.ext4.zst
+```
+
+如果你是8GB版本请下载`u-boot-with-spl-lpi4a.bin`并将下面的命令中的uboot替换成这个文件名
+
+```bash
+wget https://fast-mirror.isrc.ac.cn/openeuler/openEuler-24.03-LTS-SP1/embedded_img/riscv64/lpi4a/u-boot-with-spl-lpi4a.bin
+```
+
+使用如下命令解压镜像文件，解压大约占用5GB空间，u-boot文件不需要解压
+
+```bash
+zstd -d openEuler-24.03-LTS-SP1-riscv64-lpi4a-base-boot.ext4.zst
+zstd -d openEuler-24.03-LTS-SP1-riscv64-lpi4a-base-root.ext4.zst
+```
+
+Linux下需要配置 udev rules 来解决 USB 设备文件权限问题
+
+```bash
+cat << EOF | sudo tee /etc/udev/rules.d/99-thead-th1520.rules
+SUBSYSTEM=="usb", ATTR{idVendor}=="2345", ATTR{idProduct}=="7654", MODE="0660", GROUP="plugdev", TAG+="uaccess"
+SUBSYSTEM=="usb", ATTR{idVendor}=="1234", ATTR{idProduct}=="8888", MODE="0660", GROUP="plugdev", TAG+="uaccess"
+EOF
+```
+
+执行后需要重新插拔 USB 使新规则生效。
+
+按住板上的BOOT按键不放，然后插入 USB-C 线缆上电（线缆另一头接 PC ），进入USB烧录模式，输入`lsusb`命令检查是否识别到如下的fastboot设备
+
+```
+Bus 003 Device 005: ID 2345:7654 T-HEAD USB download gadget
+```
+
+使用`sudo fastboot devices`检查是否识别到fastboot设备，应该出现如下内容
+
+```
+????????????    fastboot
+```
+
+然后使用如下命令烧写镜像到设备eMMC中
+
+```bash
+fastboot flash ram ./u-boot-with-spl-lpi4a-16g.bin
+fastboot reboot
+sleep 1
+fastboot flash uboot ./u-boot-with-spl-lpi4a-16g.bin
+fastboot flash boot ./openEuler-24.03-LTS-SP1-riscv64-lpi4a-base-boot.ext4
+fastboot flash root ./openEuler-24.03-LTS-SP1-riscv64-lpi4a-base-root.ext4
+```
+
+随后耐心等待烧录完成即可，大约需要5分钟
+
+### Windows刷写eMMC方式安装
+
+按住板卡上的BOOT键后，将靠近BOOT键的Type-C口接入电脑，板卡会进入刷写模式。
+
+在Windows徽标右键，打开设备管理器，如果在“其他设备”处看到“USB download gadget”，即表明设备已被正确识别。但是未安装驱动程序。
+
+为了打入fastboot驱动，需要下载[Google USB驱动（需要代理）](https://dl.google.com/android/repository/usb_driver_r13-windows.zip)，下载并解压到某一位置。
+
+  1. 右键设备管理器中的“USB download gadget”，点击“更新驱动程序”
+  2. 选择“浏览我的电脑以查找驱动程序” ![driver-update-step-2](image/driver-update-step-2.png)
+  3. 选择“让我从计算机上的可用驱动程序列表中选取”
+  4. 选中“显示所有设备”，并点击“下一步” 更新驱动程序步骤![driver-update-step-4](image/driver-update-step-4.png)
+  5. 点击“从磁盘安装”
+  6. 点击“浏览”，选中Google USB驱动下的inf文件，点击确定![driver-update-step-6](image/driver-update-step-6.png)
+  7. 选中“Android Bootloader Interface”，点击“下一步”，在弹出对话框中点击“是”，在弹出的Windows安全中心对话框中点击“安装”![driver-update-step-7](image/driver-update-step-7.png)
+  8. 成功安装fastboot驱动![driver-update-step-8](image/driver-update-step-8.png)
+
+若上述步骤出现问题，请回到设备管理器找到该设备，点击“卸载驱动程序”，然后重新插拔开发板并重试。
+
+Windows用户请先下载[Android SDK平台工具](https://developer.android.google.cn/tools/releases/platform-tools?hl=zh-cn#downloads)并将其解压到合适的位置。在包含`fastboot.exe`的文件夹中打开`Powershell`（空白处右键->在终端中打开），运行`.\fastboot.exe --version`，判断`fastboot.exe`是否能够正常运行。
+
+```
+PS C:\xxx\platform-tools> .\fastboot.exe --version
+fastboot version 35.0.2-12147458
+Installed as C:\xxx\platform-tools\fastboot.exe
+```
+
+如果如上所示能够正常显示版本号则说明fastboot安装成功。
+
+然后开始烧录镜像，请将命令中的镜像替换为您下载的镜像的路径，可在资源管理器中将文件拖放到终端以快速输入文件的路径
+
+```
+.\fastboot.exe flash ram .\u-boot-with-spl-lpi4a-16g.bin
+.\fastboot.exe reboot
+sleep 1
+.\fastboot.exe flash uboot .\u-boot-with-spl-lpi4a-16g.bin
+.\fastboot.exe flash boot .\openEuler-24.03-LTS-SP1-riscv64-lpi4a-base-boot.ext4
+.\fastboot.exe flash root .\openEuler-24.03-LTS-SP1-riscv64-lpi4a-base-root.ext4
+```
+
+随后耐心等待烧录完成即可，大约需要5分钟
+
+### 从SD卡启动
+
+TODO
 
 ## 测试安装
 
@@ -64,7 +176,7 @@ EOF'
 ```
 [EPOL]
 name=EPOL
-baseurl=http://repo.openeuler.org/openEuler-24.03-LTS/EPOL/main/$basearch/
+baseurl=http://repo.openeuler.org/openEuler-24.03-LTS-SP1/EPOL/main/$basearch/
 .....
 
 [update]
@@ -92,7 +204,7 @@ dnf install "ros-humble-*" --skip-broken --exclude=ros-humble-generate-parameter
 source /opt/ros/humble/setup.sh
 ```
 
-随后输入`source  ~/.bashrc`来激活
+随后输入`source ~/.bashrc`来激活
 
 ## 测试用例列表及测试结果
 
@@ -101,8 +213,8 @@ source /opt/ros/humble/setup.sh
 | 测试用例名                  | 状态 |
 | --------------------------- | ---- |
 | 测试 turtlesim功能          | 成功 |
-| 使用HDMI开机                | 失败 |
-| 安装XFCE并启动              | 失败 |
+| 使用HDMI开机                | 成功 |
+| 安装桌面环境并启动           | 成功 |
 | 测试ros2 pkg create         | 成功 |
 | 测试ros2 pkg executables    | 成功 |
 | 测试ros2 pkg list           | 成功 |
@@ -129,73 +241,35 @@ source /opt/ros/humble/setup.sh
 | 测试ros2 interface proto    | 成功 |
 | 测试 ros 通信组件相关功能   | 成功 |
 
-失败的测试用例如下:
+## 安装桌面环境
 
-| 测试用例名         | 状态 |
-| ------------------ | ---- |
-| 使用HDMI开机        | 失败 |
-| 安装XFCE并启动      | 失败 |
+openEuler 24.03 LTS SP1 源里暂时没有提供XFCE的包，可以使用dde桌面。
 
-结论：由于oERV 24.03主线用的是 6.6 内核，[暂时没有HDMI驱动](https://github.com/revyos/revyos/issues/74)，因此需要使用ssh进行远程连接
-
-## 安装XFCE
-
-安装字库
+- 更新源
 
 ```
-# sudo dnf install dejavu-fonts liberation-fonts gnu-*-fonts google-*-fonts
+sudo dnf update
 ```
 
-安装Xorg
+- 输入以下命令安装dde桌面环境：
 
 ```
-# sudo dnf install xorg-*
+yum install dde
 ```
 
-安装XFCE及组件
+- 设置以图形化界面启动
 
 ```
-# sudo dnf install xfwm4 xfdesktop xfce4-* xfce4-*-plugin network-manager-applet *fonts
+systemctl set-default graphical.target
 ```
 
-安装登录管理器
+- 重启生效
 
 ```
-# sudo dnf install lightdm lightdm-gtk
+reboot
 ```
 
-设置默认桌面为XFCE 通过root权限用户设置
-
-```
-# echo 'user-session=xfce' >> /etc/lightdm/lightdm.conf.d/60-lightdm-gtk-greeter.conf
-```
-
-使用登录管理器登录XFCE
-
-```
-# sudo systemctl start lightdm
-```
-
-登录管理器启动后，在右上角左侧选择"xfce-session" 输入用户名、密码登录
-
-此时无法打开管理器
-
-设置开机自启动图形界面
-
-```
-# sudo systemctl enable lightdm
-# sudo systemctl set-default graphical.target
-```
-
-重启验证
-
-```
-# sudo reboot
-```
-
-经检验，在ssh开启-X情况下仍无图像输出
-
-![36](image/rv-img/36.png)
+- 重启后会自动进入dde桌面环境
 
 ## 测试 ros 基础工具相关功能
 
@@ -334,8 +408,6 @@ ros2 bag info 工具
 
 ![image-20231123215316713](image/rv-img/20.png)
 
-
-
 #### 9 ros2 interface 工具
 
 ##### 9.1 ros2 interface list
@@ -385,8 +457,6 @@ ros2 bag info 工具
 执行 `ros2 interface proto geometry_msgs/msg/TwistStamped` ，输出如下，测试通过
 
 ![image-20231123215540538](image/rv-img/27.png)
-
-
 
 #### 10.测试 ros 通信组件相关功能
 
@@ -442,24 +512,6 @@ ros2 bag info 工具
 
 分别在两个终端执行 `ros2 run turtlesim turtlesim_node` 和 `ros2 run turtlesim turtle_teleop_key` 
 
-在执行第一个命令时出错，由于oERV 24.03主线用的是 6.6 内核，[暂时没有HDMI驱动](https://github.com/revyos/revyos/issues/74)，需要使用 `ssh -X` forward X11 功能在本地电脑上显示
-
-![Screenshot_2023-11-24_03-20-56](image/rv-img/35.png)
-
-首先修改 `Licheepi 4A` 上的 `/etc/ssh/sshd_config` 文件，修改`X11Forwarding`项为`yes`，然后重启`sshd`服务
-
-```bash
-sudo systemctl restart sshd
-```
-
-就可以在你的电脑上使用下面的命令通过`ssh -X`启动`Licheepi 4A`上的小海龟界面了，同理，其他需要显示界面的程序都可以这样显示
-
-在其他有 X11 client 环境的系统下执行，比如Ubuntu或者openEuler桌面版
-
-```bash
-ssh -X openeuler@192.168.xx.xx "ros2 run turtlesim turtlesim_node"
-``` 
-
-![alt text](image/run-turtle-on-th1520.png)
+![alt text](image/run-turtle-on-th1520-2.png)
 
 小海龟能正常移动，测试通过
